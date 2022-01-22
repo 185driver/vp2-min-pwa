@@ -1,15 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Usage: ./deploy.sh <app_domain> 2>&1
-
-# Assumptions:
-# - Production source maps are already deleted.
-# - The project directory follows an <app_domain> format.
-
+# aborts on errors
 set -e
 
-app_domain=$1
+# build
+npm run build
 
-rsync -azv --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r ./docs/.vuepress/dist/ <output>
+# navigate into the build output directory
+cd docs/.vuepress/dist
 
-echo "Project upload completed."
+git init
+git add -A
+git commit -m 'deploy'
+
+git push -f git@github.com:185driver/vp2-min-pwa.git master:gh-pages
+
+cd -

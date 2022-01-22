@@ -4,7 +4,12 @@ const guideChildren = [
   '/guide/about.md',
 ];
 
+const publicPath = process.env.NODE_ENV === 'production'
+  ? '/vp2-min-pwa/'
+  : '/';
+
 module.exports = {
+  base: publicPath,
 
   description: 'Sample VuePress app',
 
@@ -26,15 +31,15 @@ module.exports = {
       'meta',
       {
         name: 'msapplication-TileImage',
-        content: '/images/icons/mstile-150x150.png',
+        content: './images/icons/mstile-150x150.png',
       },
     ],
-    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
+    ['link', { rel: 'manifest', href: `${publicPath}manifest.webmanifest` }],
     [
       'link',
       {
         rel: 'apple-touch-icon',
-        href: '/images/icons/apple-touch-icon.png',
+        href: './images/icons/apple-touch-icon.png',
       },
     ],
     [
@@ -43,7 +48,7 @@ module.exports = {
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        href: '/images/icons/favicon-16x16.png',
+        href: './images/icons/favicon-16x16.png',
       },
     ],
     [
@@ -52,14 +57,14 @@ module.exports = {
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: '/images/icons/favicon-32x32.png',
+        href: './images/icons/favicon-32x32.png',
       },
     ],
     [
       'link',
       {
         rel: 'mask-icon',
-        href: '/images/icons/safari-pinned-tab.svg',
+        href: './images/icons/safari-pinned-tab.svg',
         color: '#4DBA87',
       },
     ],
@@ -77,7 +82,7 @@ module.exports = {
   theme: '@vuepress/theme-default',
 
   themeConfig: {
-    logo: '/images/icons/android-chrome-192x192.png',
+    logo: './images/icons/android-chrome-192x192.png',
 
     navbar: [
       {
